@@ -99,7 +99,7 @@ const ProductManager: React.FC = () => {
       <main className=" py-[8rem] px-4 relative z-10">
         <h2 className="text-4xl font-bold mb-8 text-center">Admin Dashboard</h2>
 
-        {loading && <div>Loading...</div>}
+        {loading && <div className="hidden">Loading...</div>}
         {error && <div className="text-red-500">{error}</div>}
 
         <div className="flex justify-center mb-8">

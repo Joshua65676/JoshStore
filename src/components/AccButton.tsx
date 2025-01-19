@@ -121,7 +121,16 @@ const AccountButton = () => {
                       <FaLock className="w-4 h-6 inline-block" />
                       <span className="text-lg">Dashboard</span>
                       {loadingAdmin && (
-                        <span className="ml-2">Loading...</span>
+                        <div className="flex items-center justify-center h-64 xl:hidden md:flex mx:flex xm:flex">
+                          <div
+                            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-Black"
+                            role="status"
+                          >
+                            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)] text-Black">
+                              Loading...
+                            </span>
+                          </div>
+                        </div>
                       )}
                       {/* Loading state */}
                     </Button>

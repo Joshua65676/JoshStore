@@ -1,6 +1,7 @@
+
 "use client";
 import React, { useState } from "react";
-import EditProduct from "./EditProduct"; // Adjust import based on your file structure
+import EditProduct from "./EditProduct";
 import Image from "next/image";
 import { Trash, FaEdit, Star } from "@/assets";
 
