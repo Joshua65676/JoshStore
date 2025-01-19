@@ -16,7 +16,7 @@ interface Product {
   isNew: boolean;
   category: string;
   soldOut: number;
-  // rating: number;
+  rating: number;
 }
 
 const tabs = [
@@ -97,7 +97,7 @@ const ProductManager: React.FC = () => {
   return (
     <section className="min-h-screen relative w-full bg-black text-White">
       <main className=" py-[8rem] px-4 relative z-10">
-        <h2 className="text-4xl font-bold mb-8 text-center">Admin Dashboard</h2>
+        <h2 className="text-4xl font-bold mb-8 text-center text-emerald-400">Admin Dashboard</h2>
 
         {loading && <div className="hidden">Loading...</div>}
         {error && <div className="text-red-500">{error}</div>}
@@ -108,7 +108,7 @@ const ProductManager: React.FC = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center px-4 mx-2 rounded-md transition-colors duration-200 ${
-                tab.id === activeTab ? "bg-blue-500 text-white" : "bg-gray-200"
+                tab.id === activeTab ? "bg-BgOrange text-white" : "bg-gray-200"
               }`}
             >
               {tab.label}
@@ -131,26 +131,3 @@ const ProductManager: React.FC = () => {
 };
 
 export default ProductManager;
-
-{
-  /* {!loading && (
-        <div>
-          {!editingProduct ? (
-            <>
-              <CreateProduct onCreate={handleCreateProduct} />
-              <ProductList
-                products={products}
-                onEdit={setEditingProduct}
-                onDelete={handleDeleteProduct}
-              />
-            </>
-          ) : (
-            <EditProduct
-              product={editingProduct}
-              onUpdate={handleUpdateProduct}
-              onCancel={() => setEditingProduct(null)}
-            />
-          )}
-        </div>
-      )} */
-}

@@ -17,6 +17,7 @@ interface Product {
   isNew: boolean;
   category: string;
   soldOut: number;
+  rating: number;
 }
 
 const categories = [
@@ -39,6 +40,7 @@ const CreateProduct: React.FC<CreateProductProps> = ({ onCreate }) => {
     isNew: false,
     category: "",
     soldOut: 0,
+    rating: 0,
   });
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,12 +67,13 @@ const CreateProduct: React.FC<CreateProductProps> = ({ onCreate }) => {
       isNew: false,
       category: "",
       soldOut: 0,
+      rating: 0,
     });
   };
 
   return (
     <div className="shadow-lg rounded-lg p-8 mb-8 max-w-xl mx-auto bg-gray-100">
-      <h2 className="text-2xl font-semibold mb-6 text-BgOrange">
+      <h2 className="text-2xl font-semibold mb-6 text-emerald-300">
         Create New Products
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -157,67 +160,101 @@ const CreateProduct: React.FC<CreateProductProps> = ({ onCreate }) => {
             ))}
           </select>
         </div>
-        <div>
-          <label
-            htmlFor="price"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Product Price
-          </label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            placeholder="Product Price"
-            value={newProduct.price}
-            onChange={(e) =>
-              setNewProduct({ ...newProduct, price: Number(e.target.value) })
-            }
-            step={0.01}
-            className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            required
-          />
+        <div className="flex justify-between">
+          <div>
+            <label
+              htmlFor="price"
+              className="block text-sm font-medium text-gray-300"
+            >
+              Product Price
+            </label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Product Price"
+              value={newProduct.price}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, price: Number(e.target.value) })
+              }
+              step={0.01}
+              className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="oldPrice"
+              className="block text-sm font-medium text-gray-300"
+            >
+              Old Price
+            </label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Old Price"
+              value={newProduct.oldPrice}
+              onChange={(e) =>
+                setNewProduct({
+                  ...newProduct,
+                  oldPrice: Number(e.target.value),
+                })
+              }
+              step={0.01}
+              className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label
-            htmlFor="oldPrice"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Old Price
-          </label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            placeholder="Old Price"
-            value={newProduct.oldPrice}
-            onChange={(e) =>
-              setNewProduct({ ...newProduct, oldPrice: Number(e.target.value) })
-            }
-            step={0.01}
-            className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            required
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="SoldOut"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Sold Out
-          </label>
-          <input
-            type="number"
-            id="Sold"
-            name="Sold"
-            placeholder="Quantity Sold Out"
-            value={newProduct.soldOut}
-            onChange={(e) =>
-              setNewProduct({ ...newProduct, soldOut: Number(e.target.value) })
-            }
-            className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            required
-          />
+
+        <div className="flex justify-between">
+          <div>
+            <label
+              htmlFor="SoldOut"
+              className="block text-sm font-medium text-gray-300"
+            >
+              Sold Out
+            </label>
+            <input
+              type="number"
+              id="Sold"
+              name="Sold"
+              placeholder="Quantity Sold Out"
+              value={newProduct.soldOut}
+              onChange={(e) =>
+                setNewProduct({
+                  ...newProduct,
+                  soldOut: Number(e.target.value),
+                })
+              }
+              className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="Rating"
+              className="block text-sm font-medium text-gray-300"
+            >
+              Rating
+            </label>
+            <input
+              type="number"
+              id="Rating"
+              name="Rating"
+              placeholder="Rating"
+              value={newProduct.rating}
+              onChange={(e) =>
+                setNewProduct({
+                  ...newProduct,
+                  rating: Number(e.target.value),
+                })
+              }
+              className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              required
+            />
+          </div>
         </div>
         <div className="mt-1 flex items-center">
           <input
