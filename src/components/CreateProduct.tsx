@@ -271,9 +271,7 @@ const CreateProduct: React.FC<CreateProductProps> = ({ onCreate }) => {
             Upload Image
           </label>
           {newProduct.image && (
-            <span className="ml-3 text-sm text-gray-400">
-              {newProduct.image}
-            </span>
+            <span className="ml-3 text-sm text-gray-400">Image uploaded</span>
           )}
         </div>
         <Button

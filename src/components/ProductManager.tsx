@@ -58,6 +58,7 @@ const ProductManager: React.FC = () => {
       });
       const data = await response.json();
       setProducts((prevProducts) => [...prevProducts, data]);
+      alert('Product created successfully!');
     } catch (err) {
       console.error("Error creating product:", err);
       setError("Failed to create product");
@@ -80,6 +81,7 @@ const ProductManager: React.FC = () => {
           product._id === data._id ? data : product
         )
       );
+      alert('Product updated successfully!');
     } catch (err) {
       console.error("Error updating product:", err);
       setError("Failed to update product");
@@ -99,6 +101,7 @@ const ProductManager: React.FC = () => {
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== _id)
       );
+      alert('Product deleted successfully!');
     } catch (err) {
       console.error("Error deleting product:", err);
       setError("Failed to delete product");
