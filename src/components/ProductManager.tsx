@@ -47,29 +47,39 @@ const ProductManager: React.FC = () => {
     getProducts();
   }, []);
 
-  const handleCreateProduct = (newProduct: Product) => {
+  const handleCreateProduct = async (newProduct: Product) => {
     setLoading(true);
     setError(null);
-
     try {
-      setProducts((prevProducts) => [...prevProducts, newProduct]);
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newProduct),
+      });
+      const data = await response.json();
+      setProducts((prevProducts) => [...prevProducts, data]);
     } catch (err) {
       console.error("Error creating product:", err);
       setError("Failed to create product");
     }
-
     setLoading(false);
   };
 
-  const handleUpdateProduct = (updatedProduct: Product) => {
+  const handleUpdateProduct = async (updatedProduct: Product) => {
     setLoading(true);
     setError(null);
-
     try {
-      const updatedProducts = products.map((product) =>
-        product._id === updatedProduct._id ? updatedProduct : product
+      const response = await fetch("/api/products", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedProduct),
+      });
+      const data = await response.json();
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === data._id ? data : product
+        )
       );
-      setProducts(updatedProducts);
     } catch (err) {
       console.error("Error updating product:", err);
       setError("Failed to update product");
@@ -77,27 +87,31 @@ const ProductManager: React.FC = () => {
     setLoading(false);
   };
 
-  const handleDeleteProduct = (_id: number) => {
+  const handleDeleteProduct = async (_id: number) => {
     setLoading(true);
     setError(null);
-
     try {
-      const filteredProducts = products.filter(
-        (product) => product._id !== _id
+      await fetch("/api/products", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: _id }),
+      });
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== _id)
       );
-      setProducts(filteredProducts);
     } catch (err) {
       console.error("Error deleting product:", err);
       setError("Failed to delete product");
     }
-
     setLoading(false);
   };
 
   return (
     <section className="min-h-screen relative w-full bg-black text-White">
       <main className=" py-[8rem] px-4 relative z-10">
-        <h2 className="text-4xl font-bold mb-8 text-center text-emerald-400">Admin Dashboard</h2>
+        <h2 className="text-4xl font-bold mb-8 text-center text-emerald-400">
+          Admin Dashboard
+        </h2>
 
         {loading && <div className="hidden">Loading...</div>}
         {error && <div className="text-red-500">{error}</div>}

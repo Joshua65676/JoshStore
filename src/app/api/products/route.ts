@@ -372,4 +372,29 @@ import { NextResponse } from "next/server";
                      }); 
                      return NextResponse.json({ productData: uniqueProducts }); 
                     }
-}
+
+                    
+                  }
+                  export async function POST(request: Request) {
+                    const newProduct = await request.json();
+                    productData.push(newProduct);
+                    return NextResponse.json(newProduct);
+                  }
+                  
+                  export async function PUT(request: Request) {
+                     const updatedProduct = await request.json();
+                     const index = productData.findIndex((p) => p._id === updatedProduct._id);
+                      if (index !== -1) {
+                         productData[index] = updatedProduct;
+                          }
+                          return NextResponse.json(updatedProduct);
+                  }
+
+                  export async function DELETE(request: Request) {
+                    const { id } = await request.json();
+                     const index = productData.findIndex((p) => p._id === id);
+                      if (index !== -1) {
+                         productData.splice(index, 1);
+                          }
+                           return NextResponse.json({ message: 'Product deleted successfully' });
+                  }
