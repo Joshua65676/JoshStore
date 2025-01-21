@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { fetchProductData } from "../utils/fetchProductData";
 import Link from "next/link";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaBox, FaRegQuestionCircle, FaUserTie, MdAddShoppingCart } from "@/assets";
+import {
+  FaArrowAltCircleLeft,
+  FaArrowAltCircleRight,
+  FaBox,
+  FaRegQuestionCircle,
+  FaUserTie,
+  MdAddShoppingCart,
+} from "@/assets";
 
 type Product = {
   _id: number;
@@ -18,6 +25,7 @@ type Product = {
 const SideBar = ({ fetchAll }: { fetchAll: boolean }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isListVisible, setIsListVisible] = useState<boolean>(false);
+  const [stickyClass, setStickyClass] = useState<boolean>(false);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -36,6 +44,18 @@ const SideBar = ({ fetchAll }: { fetchAll: boolean }) => {
     setIsListVisible(!isListVisible);
   };
 
+  const stickNavbar = () => {
+    if (typeof window !== "undefined") {
+      const windowHeight = window.scrollY;
+      setStickyClass(windowHeight > 50);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+    return () => window.removeEventListener("scroll", stickNavbar);
+  }, []);
+
   return (
     <section className="">
       <main className="" onClick={toggleList}>
@@ -47,10 +67,22 @@ const SideBar = ({ fetchAll }: { fetchAll: boolean }) => {
       </main>
 
       {isListVisible && (
-        <main className=" text-Black absolute bg-white/20 left-0 backdrop-blur-sm border-b border-slate-300 shadow-lg z-20 w-[15rem] h-screen">
+        <main
+          className={`absolute w-[15rem] h-screen left-0 z-20 ${
+            stickyClass
+              ? " bg-white/20 backdrop-blur-sm border-b border-slate-300 shadow-lg "
+              : "bg-Black"
+          }`}
+        >
           <main className="flex flex-col gap-10 p-8 pl-8 py-8">
-            <div className="flex flex-col gap-5 text-xl font-kumbh font-semibold">
-              <h2 className="text-Orange font-semibold text-lg font-serif">Profile</h2>
+            <div
+              className={`flex flex-col gap-5 text-xl font-kumbh font-semibold ${
+                stickyClass ? "text-black" : "text-white"
+              }`}
+            >
+              <h2 className="text-Orange font-semibold text-lg font-serif">
+                Profile
+              </h2>
               <div>
                 <Link
                   href={{ pathname: `/myaccount` }}
@@ -104,7 +136,11 @@ const SideBar = ({ fetchAll }: { fetchAll: boolean }) => {
                           )}`,
                         }}
                       >
-                        <h3 className="text-xl font-kumbh font-semibold hover:text-Orange">
+                        <h3
+                          className={`text-xl font-kumbh font-semibold hover:text-Orange ${
+                            stickyClass ? "text-black" : "text-white"
+                          }`}
+                        >
                           {product.category}
                         </h3>
                       </Link>
