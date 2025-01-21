@@ -7,7 +7,7 @@ import { FaUserTie } from "react-icons/fa6";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaBoxOpen } from "react-icons/fa";
 import { MdAddShoppingCart } from "react-icons/md";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaGithub } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
@@ -41,5 +41,7 @@ export {
     FaLock,
     FaEdit,
     Trash,
-    Star
+    Star,
+    FaArrowAltCircleRight,
+    FaArrowAltCircleLeft
 }

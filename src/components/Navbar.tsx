@@ -1,14 +1,13 @@
 "use client";
-
 import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
-// import { Button } from "./ui/Button";
 import HelpButton from "./HelpButton";
 import AccountButton from "./AccButton";
 import Category from "./Category";
 import { CartContext } from "@/context/CartContext";
 import { MdAddShoppingCart } from "@/assets";
 import SearchInput from "./SearchInput";
+import SideBar from "./SideBar";
 
 const Navbar: React.FC = () => {
   const [stickyClass, setStickyClass] = useState<boolean>(false);
@@ -55,8 +54,14 @@ const Navbar: React.FC = () => {
     >
       <section className="max-w-7xl mx-auto w-full mx:p-5 mx:pt-5 md:p-0">
         <main className="flex w-full justify-between md:items-center md:flex-row mx:flex-col mx:items-start mx:gap-3">
-          <div className="flex flex-row md:gap-10 mx:gap-[8.5rem] xm:gap-[11rem]">
-            <div className="">
+          <div className="flex flex-row md:gap-10 mx:gap-[6rem] xm:gap-[8rem]">
+
+            <div className="flex gap-5 flex-row">
+              {/* sidebar */}
+              <div className=" md:hidden mx:flex xm:flex">
+                <SideBar fetchAll={false} />
+              </div>
+
               <Link href="/">
                 <span className="md:text-3xl mx:text-2xl font-semibold">
                   <span

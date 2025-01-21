@@ -53,7 +53,7 @@ const Banner = ({ fetchAll }: { fetchAll: boolean }) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64 xl:hidden md:flex mx:flex xm:flex">
+      <div className="flex items-center justify-center h-64 xl:hidden md:flex mx:flex xm:flex py-[12rem]">
         <div
           className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-Black"
           role="status"
@@ -67,7 +67,7 @@ const Banner = ({ fetchAll }: { fetchAll: boolean }) => {
   }
 
   return (
-    <main className="md:py-28 mx:py-[10rem] container w-full max-w-7xl flex flex-col gap-10 mx:-mb-[10rem] md:-mb-[5rem] xl:hidden md:flex">
+    <main className="md:py-28 mx:py-[12rem] container w-full max-w-7xl flex flex-col gap-10 mx:-mb-[10rem] md:-mb-[5rem] xl:hidden md:flex">
       <span>
         <h1 className="text-4xl font-kumbh font-bold">Category deals</h1>
       </span>
